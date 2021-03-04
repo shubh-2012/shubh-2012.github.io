@@ -23,6 +23,8 @@
 
 })();
 
+
+
 function bodyScrollingToggle(){
 	document.body.classList.toggle("hidden-scrolling");
 }
@@ -33,8 +35,10 @@ function bodyScrollingToggle(){
 		const filterContainer=document.querySelector(".portfolio-filter"),
 		portfolioItemsContainer=document.querySelector(".portfolio-items"),
 		portfolioItems=document.querySelectorAll(".portfolio-item"),
-		popup=document.querySelector(".portfolio-popup"),prevBtn=popup.querySelector(".pp-prev"),
-		nextBtn=popup.querySelector(".pp-next"),closeBtn=popup.querySelector(".pp-close"),
+		popup=document.querySelector(".portfolio-popup"),
+		prevBtn=popup.querySelector(".pp-prev"),
+		nextBtn=popup.querySelector(".pp-next"),
+		closeBtn=popup.querySelector(".pp-close"),
 		projectDetailsContainer=popup.querySelector(".pp-details"),
 		projectDetailsBtn=popup.querySelector(".pp-project-details-btn");
 		let itemIndex,slideIndex,screenshots;
@@ -47,7 +51,7 @@ function bodyScrollingToggle(){
 			event.target.classList.add("active","outer-shadow");
 			const target=event.target.getAttribute("data-target");
 			portfolioItems.forEach((item)=>{
-				if(target===item.getAttribute("data-category") || target==='all'){
+				if(target === item.getAttribute("data-category") || target==='all'){
 					item.classList.remove("hide");
 					item.classList.add("show");
 				}
@@ -59,9 +63,14 @@ function bodyScrollingToggle(){
 			}	
 		})
 
+
+
+
 	portfolioItemsContainer.addEventListener("click",(event) =>{
 		if(event.target.closest(".portfolio-item-inner")){
 			const portfolioItem= event.target.closest(".portfolio-item-inner").parentElement;
+
+
 			itemIndex=Array.from(portfolioItem.parentElement.children).indexOf(portfolioItem);
 			screenshots=portfolioItems[itemIndex].querySelector(".portfolio-item-img img").getAttribute("data-screenshots");
 			screenshots=screenshots.split(",");
@@ -99,7 +108,7 @@ function bodyScrollingToggle(){
 		const popupImg=popup.querySelector(".pp-img");
 		popup.querySelector(".pp-loader").classList.add("active");
 		popupImg.src=imgSrc;
-		popupImg.onload=()=>{
+		popupImg.onload=() =>{
 			popup.querySelector(".pp-loader").classList.remove("active");
 		}
 
@@ -159,9 +168,63 @@ function bodyScrollingToggle(){
 			projectDetailsBtn.querySelector("i").classList.remove("fa-plus");
 			projectDetailsBtn.querySelector("i").classList.add("fa-minus");
 			projectDetailsContainer.classList.add("active");
-			projectDetailsContainer.style.maxHeight=projectDetailsContainer.scrollHeight + "px;"
+			projectDetailsContainer.style.maxHeight=projectDetailsContainer.scrollHeight + "px";
 			popup.scrollTo(0,projectDetailsContainer.offsetTop);
 		}
 	}
 
 	})();
+
+
+	(() =>{
+
+		const sliderContainer= document.querySelector(".testi-slider-container"),
+		slides= sliderContainer.querySelectorAll(".testi-item"),
+		slideWidth= sliderContainer.offsetWidth,
+		prevBtn= document.querySelector(".testi-slider-nav .prev"),
+		nextBtn= document.querySelector(".testi-slider-nav .next");
+		activeSlide=sliderContainer.querySelector(".testi-item.active");
+		let slideIndex= Array.from(activeSlide.parentElement.children).indexof(
+			activeSlide);
+
+
+		slides.forEach((slide)=>{
+			slide.style.width= slideWidth + "px";
+		})
+
+		sliderContainer.style.width=slideWidth * slides.length + "px";
+
+		nextBtn.addEventListener("click", () =>{
+			if(slideIndex===slides.length-1){
+				slideIndex=0;
+			}
+			else{
+				slideIndex++;
+			}
+			slider();
+		})
+
+		prevBtn.addEventListener("click", () =>{
+			if(slideIndex===0){
+				slideIndex=slides.length-1;
+			}
+			else{
+				slideIndex--;
+			}
+			slider();
+		})
+
+
+		function slider() {
+
+			sliderContainer.querySelector(".testi-item.active").classList.remove("active");
+
+			slides[slideIndex].classList.add("active");
+			sliderContainer.style.marginLeft = -(slideWidth * slideIndex) + "px";
+		}
+
+		slider();
+
+})();
+
+	
