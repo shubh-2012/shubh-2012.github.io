@@ -182,7 +182,7 @@ function bodyScrollingToggle(){
 		slides= sliderContainer.querySelectorAll(".testi-item"),
 		slideWidth= sliderContainer.offsetWidth,
 		prevBtn= document.querySelector(".testi-slider-nav .prev"),
-		nextBtn= document.querySelector(".testi-slider-nav .next");
+		nextBtn= document.querySelector(".testi-slider-nav .next"),
 		activeSlide=sliderContainer.querySelector(".testi-item.active");
 		let slideIndex= Array.from(activeSlide.parentElement.children).indexOf(
 			activeSlide);
