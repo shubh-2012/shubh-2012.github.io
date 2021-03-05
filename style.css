@@ -1023,7 +1023,7 @@
 
 		.testimonial-section .testi-slider{
 			border-radius: 5px;
-			
+			overflow: hidden;
 		}
 
 		.testimonial-section .testi-slider-container{
@@ -1064,6 +1064,7 @@
 
 		.testimonial-section .testi-item img{
 			max-width: 170px;
+			height: 250px;
 			display: inline-block;
 			width: 100%;
 		}
@@ -1079,8 +1080,7 @@
 
 		.testimonial-section .testi-slider-nav{
 			margin-top: 30px;
-			text-align: center; 
-			
+			text-align: center; 			
 		}
 
 		.testimonial-section .testi-slider-nav span{
