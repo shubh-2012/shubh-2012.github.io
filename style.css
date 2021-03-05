@@ -1023,7 +1023,7 @@
 
 		.testimonial-section .testi-slider{
 			border-radius: 5px;
-			
+			overflow: hidden;
 		}
 
 		.testimonial-section .testi-slider-container{
