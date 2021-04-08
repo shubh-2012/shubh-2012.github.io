@@ -6,7 +6,7 @@
 		:root{
 			--bg-black-900:#000000;
 			--bg-black-100:#dddddd;
-			--bg-black-50:#eff0f4;
+			--bg-black-50:#eff0f5;
 			--bg-opacity: rgba(255,255,255.0.5);
 			--text-black-900:#000000;
 			--text-black-700:#555555;
@@ -209,6 +209,11 @@
 			font-weight: 600;
 			color:var(--skin-color);
 		}
+
+		.section.hide{
+			display: none;
+		}
+
 		.header{
 			padding:20px 15px;
 			position:absolute;
@@ -278,6 +283,41 @@
 			visibility: hidden;
 			overflow-y: auto;
 		}
+
+		.fade-out-effect{
+			position: fixed;
+			left:0;
+			top:0;
+			width: 100%;
+			height: 100%;
+			z-index: -1;
+			visibility: hidden;
+			color: var(--bg-black-50);
+		}
+
+		@keyframes fade-out{
+			0%{
+				opacity: 1;
+			}
+			100%{
+				opacity: 0;
+			}
+		}
+
+		.fade-out-effect.active{
+			visibility: visible;
+			opacity: 1;
+			z-index: 999;
+			transition: all 0.3s ease-in;
+		}
+
+		.nav-menu.open{
+			visibility: visible;
+			opacity: 1;
+			z-index: 999;
+			transition: all 0.3s ease-in;
+		}
+
 		.nav-menu .close-nav-menu{
 			height: 40px;
 			width: 40px;
@@ -303,7 +343,7 @@
 			justify-content: center;
 		}
 		.nav-menu ul{
-			background-color: violet;
+			
 			padding: 15px;
 		}
 		.nav-menu ul li{
@@ -407,7 +447,7 @@
 			font-size: 16px;
 			line-height: 26px;
 			margin-bottom: 15px;
-			color:var(--text-black-600);
+			
 		}
 		.about-section .about-info span{
 			font-weight: 600;
@@ -510,6 +550,7 @@
 		}
 		.about-section .timeline .timeline-item:nth-child(even){
 			padding-left: calc(50% + 50px);
+
 		}
 		.about-section .timeline .timeline-item-inner{
 			padding: 30px;
@@ -564,14 +605,13 @@
 		}
 		.about-section .timeline .timeline-item-inner h4{
 			font-size: 16px;
-			font-style:italic;
-			color:var(--text-black-600);
+			font-style:italic;			
 			margin:0;
 		}
 		.about-section .timeline .timeline-item-inner p{
 			font-size: 16px;
 			line-height: 26px;
-			color:var(--text-black-600);
+			font-weight: bold;
 			margin:15px 0 0;
 		}
 
