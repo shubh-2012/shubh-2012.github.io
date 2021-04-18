@@ -7,6 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="font-awesome.css">
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link rel="stylesheet" type="text/css" href="style-1.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
 	<header class="header">
@@ -611,39 +612,40 @@
 				</div>
 				<div class="row">
 					<div class="contact-form">
-						<form>
+						<form id="form" target="_self" onsubmit="return postToGoogle();" action="">
 							<div class="row">
 								<div class="w-50">
 									<div class="input-group outer-shadow hover-in-shadow">
-									<input type="text" placeholder="Name" class="input-control">	
+									<input id="nameField" name="entry.2005620554" type="text" placeholder="Name" class="input-control">	
 									</div>	
 
 									<div class="input-group outer-shadow hover-in-shadow">
-									<input type="text" placeholder="E-mail" class="input-control">	
+									<input id="emailField" name="entry.1045781291" type="text" placeholder="E-mail" class="input-control">	
 									</div>	
 
 									<div class="input-group outer-shadow hover-in-shadow">
-									<input type="text" placeholder="subject" class="input-control">	
+									<input id="mobField" name= "entry.1166974658" type="text" placeholder="Mobile" class="input-control">	
 									</div>	
 
 
 							</div>
 								<div class="w-50">	
 									<div class="input-group outer-shadow hover-in-shadow">
-										<textarea class="input-control" placeholder="message">
+										<textarea id="message" name="entry.839337160" class="input-control" placeholder="message">
 										</textarea>	
 									</div>
 								</div>
 							</div>
 							<div class="row">
 								<div class="submit-btn">
-									<button type="submit" class="btn-1 outer-shadow hover-in-shadow"> 
+									<button id="send" type="submit" class="btn-1 outer-shadow hover-in-shadow"> 
 										send messgage
 									</button>
 								</div>
 							</div>
 
 						</form>
+						<h3 id="success-msg" style="text-align: center !important; margin-top:50px !important; display:none; color:black;"> Your Request has been posted</h3>
 					</div>
 				</div>
 			</div>
@@ -708,5 +710,50 @@
 
 
 	<script type="text/javascript" src="main.js"></script>
+		<script>
+			function postToGoogle() {
+		                var field1 = $("#nameField").val();
+		                var field2 = $("#emailField").val();
+		                var field3 = $("#mobField").val();
+		                var field4 = $("#message").val();
+		 				
+						if(field1 == ""){
+							alert('Please Fill Your Name');
+							document.getElementById("nameField").focus();
+							return false;
+						}
+						if(field2 == ""){
+							alert('Please Fill Your Email');
+							document.getElementById("emailField").focus();
+							return false;
+						}
+						if(field3 == "" || field3.length > 10 || field3.length < 10){
+							alert('Please Fill Your Mobile Number');
+							document.getElementById("mobField").focus();
+							return false;
+						}
+
+
+						
+			
+		                $.ajax({
+		                    url: "https://docs.google.com/forms/d/e/1FAIpQLSf0aTqLE43FF3hQpgJgtqMIn2uGoKq9AYW6ByEltVVl0sXB7g/formResponse?",
+							data: {"entry.2005620554": field1, "entry.1045781291": field2, "entry.1166974658": field3, "entry.839337160": field4},
+		                    type: "POST",
+		                    dataType: "xml",
+		                    success: function(d)
+							{
+							},
+							error: function(x, y, z)
+								{
+
+									$('#success-msg').show();
+									$('#form').hide();
+									
+								}
+		                });
+						return false;
+		     }
+	</script>
 </body>
 </html>
